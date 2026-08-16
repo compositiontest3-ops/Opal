@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#07090D">
+<meta name="description" content="하루 한 팀, 카운터 2석. 다섯 접시로 이어지는 예약제 오마카세. 경기도 고양시 덕양구 행신로 143번길 40.">
+
+<meta property="og:type" content="restaurant">
+<meta property="og:site_name" content="吳八 오팔">
+<meta property="og:title" content="吳八 — 하루 한 팀, 다섯 접시">
+<meta property="og:description" content="카운터 2석의 예약제 오마카세. 차게 시작해, 뜨겁게 지나, 다시 차게 끝나는 밤.">
+<meta property="og:image" content="og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ko_KR">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="吳八 — 하루 한 팀, 다섯 접시">
+<meta name="twitter:description" content="카운터 2석의 예약제 오마카세. 차게 시작해, 뜨겁게 지나, 다시 차게 끝나는 밤.">
+<meta name="twitter:image" content="og-image.png">
+
+<link rel="icon" href="favicon.png" sizes="32x32">
+<link rel="icon" href="icon.png" sizes="512x512">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<title>吳八 — 하루 한 팀, 다섯 접시</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Hahmlet:wght@200;300;400;500&family=Noto+Sans+KR:wght@200;300;400&family=Noto+Serif+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    color-scheme:dark;
+    --void:#07090D;
+    --bone:#E7E3DA;
+    --dim:rgba(231,227,218,.52);
+    --faint:rgba(231,227,218,.26);
+    --candle:#D6B183;
+    --hair:rgba(231,227,218,.14);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;overflow-x:hidden;overflow-x:clip;max-width:100%}
+  body{
+    margin:0;background:var(--void);color:var(--bone);
+    font-family:'Noto Sans KR',sans-serif;font-weight:300;line-height:1.9;
+    letter-spacing:-.01em;word-break:keep-all;
+    -webkit-font-smoothing:antialiased;
+    width:100%;max-width:100%;overflow-x:hidden;overflow-x:clip;
+  }
+  .grain{
+    position:fixed;inset:-50%;z-index:60;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E");
+    animation:grainshift 7s steps(6) infinite;
+  }
+  @keyframes grainshift{
+    0%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-3%)}
+    60%{transform:translate(-2%,-2%)}80%{transform:translate(3%,1%)}100%{transform:translate(0,0)}
+  }
+  .vignette{
+    position:fixed;inset:0;z-index:55;pointer-events:none;
+    background:radial-gradient(120% 90% at 50% 45%,transparent 40%,rgba(7,9,13,.75) 100%);
+  }
+  .wrap{width:min(1080px,88vw);margin:0 auto}
+  .latin{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;letter-spacing:.04em}
+  .label{font-family:'Cormorant Garamond',serif;font-size:12px;letter-spacing:.42em;text-transform:uppercase;color:var(--candle)}
+
+  /* ---------- NAV ---------- */
+  nav.top{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:22px min(6vw,44px);
+    transition:background .5s ease,padding .5s ease,border-color .5s ease;
+    border-bottom:1px solid transparent;
+  }
+  nav.top.solid{
+    background:rgba(7,9,13,.82);
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    padding:14px min(6vw,44px);
+    border-bottom-color:var(--hair);
+  }
+  .wordmark{
+    font-family:'Noto Serif KR','Hahmlet',serif;font-weight:400;font-size:20px;
+    letter-spacing:.2em;color:var(--bone);text-decoration:none;
+    display:inline-block;padding-right:.2em;line-height:1;
+  }
+  .navlinks{display:flex;align-items:center;gap:30px}
+  .navlinks a{
+    font-family:'Cormorant Garamond',serif;
+    font-size:13px;letter-spacing:.3em;text-transform:uppercase;
+    color:var(--dim);text-decoration:none;transition:color .35s ease;
+  }
+  .navlinks a:hover,.navlinks a:focus-visible{color:var(--bone)}
+  .btn{
+    font-family:'Noto Sans KR',sans-serif;
+    font-size:13px;letter-spacing:.2em;
+    color:var(--candle);text-decoration:none;
+    border:1px solid rgba(214,177,131,.45);
+    padding:11px 22px;background:transparent;cursor:pointer;
+    transition:background .4s ease,color .4s ease,border-color .4s ease;
+  }
+  .btn:hover,.btn:focus-visible{background:var(--candle);color:var(--void);border-color:var(--candle)}
+  .navlinks .m-hide{display:inline}
+
+  /* ---------- OVERTURE ---------- */
+  .overture{min-height:100svh;display:grid;place-items:center;text-align:center;position:relative;padding:120px 0 90px}
+  .overture::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(58% 46% at 50% 46%,rgba(214,177,131,.13),transparent 72%);
+  }
+  .o-inner{position:relative}
+  .mark{font-family:'Cormorant Garamond',serif;font-size:12px;letter-spacing:.62em;text-transform:uppercase;color:var(--dim);margin-bottom:48px}
+  h1{font-family:'Hahmlet',serif;font-weight:200;font-size:clamp(44px,9vw,110px);line-height:1.14;letter-spacing:-.035em;margin:0}
+  h1 b{font-weight:500}
+  .rule{width:1px;height:70px;margin:40px auto 36px;background:linear-gradient(180deg,var(--candle),transparent)}
+  .o-sub{font-size:15px;color:var(--dim);max-width:22em;margin:0 auto;line-height:2.1}
+  .o-facts{
+    margin-top:46px;display:flex;gap:0;justify-content:center;flex-wrap:wrap;
+    font-family:'Noto Sans KR',sans-serif;font-size:13px;letter-spacing:.12em;
+    color:rgba(231,227,218,.44);
+  }
+  .o-facts span{padding:0 24px;border-right:1px solid var(--hair);line-height:1.6}
+  .o-facts span:last-child{border-right:none}
+  .o-cta{margin-top:46px;display:inline-block}
+  .scrollcue{position:absolute;bottom:38px;left:50%;transform:translateX(-50%);font-family:'Noto Sans KR',sans-serif;font-weight:300;font-size:12px;color:var(--faint);letter-spacing:.28em}
+
+  /* ---------- PROLOGUE ---------- */
+  .prologue{padding:20vh 0;text-align:center}
+  .prologue p{
+    font-family:'Hahmlet',serif;font-weight:200;
+    font-size:clamp(19px,2.5vw,29px);line-height:2.05;letter-spacing:-.02em;
+    max-width:15.5em;margin:0 auto;color:rgba(231,227,218,.86);
+  }
+  .prologue .drop{color:var(--candle)}
+
+  /* ---------- COURSES ---------- */
+  .menu-head{text-align:center;padding:0 0 4vh}
+  .menu-head h2{font-family:'Hahmlet',serif;font-weight:200;font-size:clamp(26px,4vw,42px);letter-spacing:-.03em;margin:18px 0 0}
+  .course{min-height:100svh;display:flex;align-items:center;position:relative;padding:14vh 0;overflow-x:clip}
+  .course::before{
+    content:"";position:absolute;width:min(760px,100%);height:min(760px,100vw);
+    right:-10%;top:50%;transform:translateY(-50%);
+    background:radial-gradient(circle,var(--glow) 0%,transparent 66%);
+    opacity:.34;filter:blur(48px);pointer-events:none;
+  }
+  .c-inner{
+    position:relative;max-width:640px;
+    opacity:0;transform:translateY(30px);
+    transition:opacity 1.5s cubic-bezier(.2,.7,.3,1),transform 1.5s cubic-bezier(.2,.7,.3,1);
+  }
+  .course.in .c-inner{opacity:1;transform:none}
+  .numeral{
+    font-family:'Cormorant Garamond',serif;font-size:15px;letter-spacing:.5em;
+    color:var(--candle);display:flex;align-items:center;gap:18px;margin-bottom:28px;
+  }
+  .numeral::after{content:"";height:1px;width:64px;background:var(--hair)}
+  .course .latin{display:block;font-size:clamp(17px,2.2vw,23px);color:var(--dim);margin-bottom:14px}
+  .course h3{font-family:'Hahmlet',serif;font-weight:300;font-size:clamp(28px,4.8vw,52px);line-height:1.28;letter-spacing:-.035em;margin:0}
+  .course .desc{margin:28px 0 0;font-size:15.5px;color:rgba(231,227,218,.72);max-width:30em;line-height:2.15}
+  .ing{
+    margin:32px 0 0;padding-top:20px;border-top:1px solid var(--hair);
+    font-family:'Noto Sans KR',sans-serif;font-weight:300;font-size:14px;letter-spacing:.02em;
+    color:rgba(231,227,218,.5);max-width:30em;
+  }
+  .serve{display:block;margin-top:16px;font-family:'Cormorant Garamond',serif;font-size:12px;letter-spacing:.34em;color:var(--faint)}
+
+  /* ---------- INFORMATION ---------- */
+  .info{padding:18vh 0 14vh;border-top:1px solid var(--hair)}
+  .sec-head{text-align:center;margin-bottom:9vh}
+  .sec-head h2{font-family:'Hahmlet',serif;font-weight:200;font-size:clamp(26px,4vw,44px);letter-spacing:-.03em;margin:18px 0 0}
+  .info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;background:var(--hair)}
+  .cell{background:var(--void);padding:34px 28px}
+  .cell dt{
+    font-family:'Cormorant Garamond',serif;font-size:11.5px;letter-spacing:.32em;
+    text-transform:uppercase;color:var(--candle);margin-bottom:14px;
+  }
+  .cell dd{margin:0;font-size:14.5px;color:rgba(231,227,218,.76);line-height:1.95}
+  .cell dd small{display:block;font-size:12.5px;color:var(--faint);margin-top:6px;line-height:1.8}
+
+  /* ---------- RESERVATION ---------- */
+  .reserve{padding:14vh 0 16vh;position:relative}
+  .reserve::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(52% 44% at 50% 50%,rgba(214,177,131,.09),transparent 72%);
+  }
+  .panel{
+    position:relative;max-width:640px;margin:0 auto;
+    border:1px solid var(--hair);padding:clamp(30px,5vw,54px);
+    background:rgba(231,227,218,.02);
+  }
+  .field{margin-bottom:30px}
+  .field > label,.field .label{
+    display:block;font-family:'Noto Sans KR',sans-serif;font-weight:400;
+    font-size:12px;letter-spacing:.14em;text-transform:none;
+    color:var(--candle);margin-bottom:14px;
+  }
+  .field input[type=text],.field input[type=date],.field textarea{
+    width:100%;background:transparent;border:none;border-bottom:1px solid var(--hair);
+    color:var(--bone);font-family:'Noto Sans KR',sans-serif;font-weight:300;
+    font-size:16px;letter-spacing:.01em;
+    padding:11px 0;outline:none;transition:border-color .4s ease;
+  }
+  .field input[type=date]{font-variant-numeric:tabular-nums}
+  .field input[type=date]::-webkit-calendar-picker-indicator{filter:invert(.75);cursor:pointer;opacity:.6}
+  .field input[type=date]::-webkit-calendar-picker-indicator:hover{opacity:1}
+
+  /* calendar */
+  .cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+  .cal-title{font-family:'Hahmlet',serif;font-weight:300;font-size:19px;letter-spacing:.02em;font-variant-numeric:tabular-nums}
+  .cal-nav{display:flex;gap:6px}
+  .cal-nav button{
+    background:none;border:1px solid var(--hair);color:var(--dim);
+    width:34px;height:34px;cursor:pointer;font-size:13px;line-height:1;
+    transition:border-color .35s ease,color .35s ease;
+  }
+  .cal-nav button:hover:not(:disabled){border-color:var(--candle);color:var(--candle)}
+  .cal-nav button:disabled{opacity:.25;cursor:not-allowed}
+  .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
+  .dow{
+    text-align:center;font-size:11px;letter-spacing:.1em;color:var(--faint);
+    padding:0 0 10px;
+  }
+  .day{
+    aspect-ratio:1/.92;display:grid;place-items:center;position:relative;
+    font-size:14px;font-weight:300;font-variant-numeric:tabular-nums;
+    border:1px solid transparent;background:rgba(231,227,218,.025);
+    color:rgba(231,227,218,.3);
+  }
+  .day.empty{background:transparent}
+  .day.past{color:rgba(231,227,218,.13)}
+  .day.gone{color:rgba(231,227,218,.22);text-decoration:line-through;text-decoration-thickness:1px}
+  .day.open{
+    color:var(--candle);border-color:rgba(214,177,131,.5);cursor:pointer;
+    background:rgba(214,177,131,.06);
+  }
+  .day.open:hover{background:rgba(214,177,131,.15)}
+  .day.sel{background:var(--candle);color:var(--void);border-color:var(--candle)}
+  .day .dot{position:absolute;bottom:7px;width:3px;height:3px;border-radius:50%;background:var(--candle)}
+  .day.sel .dot{background:var(--void)}
+  .legend{
+    display:flex;gap:22px;justify-content:center;margin-top:20px;
+    font-size:12px;color:var(--faint);letter-spacing:.02em;flex-wrap:wrap;
+  }
+  .legend span{display:flex;align-items:center;gap:7px}
+  .legend i{width:9px;height:9px;display:block;border:1px solid rgba(214,177,131,.5);background:rgba(214,177,131,.15)}
+  .legend i.full{border-color:transparent;background:rgba(231,227,218,.14)}
+  .fineprint strong{color:var(--candle);font-weight:400}
+  .warn{
+    display:none;margin:10px 0 0;font-size:12.5px;letter-spacing:.01em;
+    color:#C98A72;
+  }
+  .warn.show{display:block;animation:fadein .4s ease both}
+  .field.err input[type=text]{border-bottom-color:rgba(201,138,114,.7)}
+  .slot-field{display:none}
+  .slot-field.show{display:block;animation:fadein .6s ease both}
+  .choices label.gone{
+    color:rgba(231,227,218,.2);text-decoration:line-through;
+    border-color:rgba(231,227,218,.07);cursor:not-allowed;
+  }
+  .choices label.gone:hover{color:rgba(231,227,218,.2)}
+  .btn:disabled{opacity:.3;cursor:not-allowed;border-color:var(--hair);color:var(--faint)}
+  .btn:disabled:hover{background:transparent;color:var(--faint)}
+  .field input:focus,.field textarea:focus{border-bottom-color:var(--candle)}
+  .field input::placeholder,.field textarea::placeholder{color:var(--faint)}
+  .field textarea{resize:vertical;min-height:58px}
+  .choices{display:flex;flex-wrap:wrap;gap:10px}
+  .choices label{
+    position:relative;cursor:pointer;
+    font-family:'Noto Sans KR',sans-serif;font-weight:300;font-size:15px;letter-spacing:.04em;
+    font-variant-numeric:tabular-nums;
+    padding:11px 22px;border:1px solid var(--hair);color:var(--dim);
+    transition:border-color .35s ease,color .35s ease,background .35s ease;
+  }
+  .choices input{position:absolute;opacity:0;width:0;height:0}
+  .choices label:hover{color:var(--bone)}
+  .choices label.sel{border-color:var(--candle);color:var(--candle);background:rgba(214,177,131,.07)}
+  .choices input:focus-visible + span{text-decoration:underline}
+  .submit{width:100%;margin-top:14px;padding:17px;font-size:14px;letter-spacing:.16em}
+  .fineprint{margin-top:22px;font-size:13px;color:var(--faint);line-height:2;text-align:center;letter-spacing:.01em}
+
+  .confirm{display:none;text-align:center;padding:14px 0}
+  .confirm.show{display:block;animation:fadein .9s ease both}
+  @keyframes fadein{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  .confirm .seal{
+    width:52px;height:52px;border:1px solid rgba(214,177,131,.5);border-radius:50%;
+    display:grid;place-items:center;margin:0 auto 26px;
+    font-family:'Cormorant Garamond',serif;font-size:17px;color:var(--candle);
+  }
+  .confirm h4{font-family:'Hahmlet',serif;font-weight:300;font-size:27px;letter-spacing:-.02em;margin:0 0 28px}
+  .cline{
+    display:flex;justify-content:space-between;gap:16px;align-items:baseline;
+    padding:13px 0;border-bottom:1px solid var(--hair);
+    font-size:15px;font-weight:300;color:rgba(231,227,218,.82);text-align:left;
+    font-variant-numeric:tabular-nums;
+  }
+  .cline span:first-child{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;letter-spacing:.08em;text-transform:none;color:var(--faint);flex:none}
+  .confirm p{margin:26px 0 0;font-size:13.5px;color:var(--dim);line-height:2}
+  .again{background:none;border:none;color:var(--faint);cursor:pointer;margin-top:22px;font-family:'Noto Sans KR',sans-serif;font-size:13px;letter-spacing:.14em;text-decoration:underline;padding:6px}
+  .again:hover{color:var(--bone)}
+
+  /* ---------- FOOTER ---------- */
+  footer{border-top:1px solid var(--hair);padding:52px 0 60px}
+  .f-grid{display:flex;justify-content:space-between;gap:26px;flex-wrap:wrap;align-items:flex-start}
+  .f-grid .sig{font-family:'Noto Serif KR','Hahmlet',serif;font-weight:400;font-size:22px;letter-spacing:.2em;color:rgba(231,227,218,.78);line-height:1}
+  .f-grid .sig em{font-style:normal;font-family:'Noto Sans KR',sans-serif;font-weight:300;font-size:12px;letter-spacing:.2em;color:var(--faint);margin-left:2px}
+  .f-col{font-family:'Cormorant Garamond',serif;font-size:12.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--faint);line-height:2.2}
+  .f-col a{color:var(--dim);text-decoration:none}
+  .f-col a:hover{color:var(--candle)}
+  .f-col .ko{font-family:'Noto Sans KR',sans-serif;font-size:13px;letter-spacing:.12em;text-transform:none;color:rgba(231,227,218,.4)}
+
+  :focus-visible{outline:1px solid var(--candle);outline-offset:4px}
+
+  @media (max-width:760px){
+    .navlinks .m-hide{display:none}
+    .navlinks{gap:16px}
+    .course::before{right:-25%;opacity:.3}
+    .o-facts span{padding:0 12px}
+    .prologue{padding:15vh 0}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .grain{animation:none}
+    .c-inner{opacity:1;transform:none;transition:none}
+    .confirm.show{animation:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+
+<nav class="top" id="nav">
+  <a href="#top" class="wordmark">吳八</a>
+  <div class="navlinks">
+    <a href="#menu" class="m-hide">Menu</a>
+    <a href="#info" class="m-hide">Information</a>
+    <a href="#reserve" class="btn">예약</a>
+  </div>
+</nav>
+
+<header class="overture" id="top">
+  <div class="o-inner wrap">
+    <div class="mark">Opal · Goyang</div>
+    <h1>다섯 접시가<br><b>지나갑니다</b></h1>
+    <div class="rule"></div>
+    <p class="o-sub">차게 시작해, 뜨겁게 지나,<br>다시 차게 끝나는 밤.</p>
+    <div class="o-facts">
+      <span>하루 한 팀</span><span>카운터 2석</span><span>단일 코스 · 5품</span>
+    </div>
+    <a href="#reserve" class="btn o-cta">자리 예약하기</a>
+  </div>
+  <div class="scrollcue">아래로</div>
+</header>
+
+<section class="prologue">
+  <p>장은 <span class="drop">새벽 네 시</span>에 봅니다.<br>해가 뜨기 전 상자가 문 앞에 놓이고,<br>그날 밤 다섯 접시가 됩니다.</p>
+</section>
+
+<main id="menu">
+
+  <div class="menu-head wrap">
+    <div class="label">Tasting menu</div>
+    <h2>오늘 밤의 코스</h2>
+  </div>
+
+  <section class="course" style="--glow:#4A6B3E">
+    <div class="wrap"><div class="c-inner">
+      <div class="numeral">I</div>
+      <span class="latin">Romana alla griglia</span>
+      <h3>그을린 로메인,<br>다섯 빛깔의 토마토</h3>
+      <p class="desc">불에 닿아 단맛이 오른 겉면과, 아직 서늘하게 남은 속심이 한 입에 같이 옵니다. 색이 다른 대추방울토마토가 산미를 조금씩 나눠 맡고, 그라나 파다노의 짠맛이 그 사이를 잇습니다. 발사믹이 마지막에 얇게 따라붙는, 가볍고 서늘한 첫 접시입니다.</p>
+      <p class="ing">미니 로메인 · 칼라 대추방울토마토 · 그라나 파다노</p>
+      <span class="serve">19:30</span>
+    </div></div>
+  </section>
+
+  <section class="course" style="--glow:#8E2F35">
+    <div class="wrap"><div class="c-inner">
+      <div class="numeral">II</div>
+      <span class="latin">Tartare di manzo</span>
+      <h3>한우 육회와 아보카도,<br>껍질 없이</h3>
+      <p class="desc">붉은 살의 단맛 위에 아보카도의 기름진 초록이 겹칩니다. 참기름 향이 얇게 깔리고, 가운데 앉힌 노른자가 두 층을 하나로 묶습니다. 셸이나 크래커 없이 그대로 내기 때문에 재료의 온도와 질감만 남습니다. 위에서 아래로 한 번에 떠서 드세요.</p>
+      <p class="ing">투뿔 한우 육회 · 후숙 아보카도</p>
+      <span class="serve">19:50</span>
+    </div></div>
+  </section>
+
+  <section class="course" style="--glow:#9A6320">
+    <div class="wrap"><div class="c-inner">
+      <div class="numeral">III</div>
+      <span class="latin">Pappardelle ai frutti di mare</span>
+      <h3>관자와 새우,<br>그리고 붉은 기름</h3>
+      <p class="desc">새우 머리에서만 나오는 진한 감칠맛이 접시 전체를 붉게 물들입니다. 넓은 파파델레가 그 기름을 넉넉히 머금고, 겉만 익힌 관자가 씹을 때마다 단맛을 냅니다. 다섯 접시 중 향이 가장 짙고, 유일하게 소스로 배를 채우는 접시입니다.</p>
+      <p class="ing">가리비 관자 · 새우 · 데체코 파파델레</p>
+      <span class="serve">20:20</span>
+    </div></div>
+  </section>
+
+  <section class="course" style="--glow:#6B2A18">
+    <div class="wrap"><div class="c-inner">
+      <div class="numeral">IV</div>
+      <span class="latin">Controfiletto</span>
+      <h3>한우 채끝,<br>불에서 내린 그대로</h3>
+      <p class="desc">1등급 채끝 이백 그램. 겉은 짙게 익히고 속은 붉게 남겨, 씹을수록 지방의 단맛이 천천히 올라옵니다. 버터와 마늘 향이 겉면에만 얇게 배어 고기 자체의 결을 가리지 않습니다. 소스는 접시 한쪽에 따로 둡니다. 코스에서 가장 뜨겁고, 가장 오래 씹게 되는 접시입니다.</p>
+      <p class="ing">한우 1등급 채끝</p>
+      <span class="serve">20:50</span>
+    </div></div>
+  </section>
+
+  <section class="course" style="--glow:#C07A22">
+    <div class="wrap"><div class="c-inner">
+      <div class="numeral">V</div>
+      <span class="latin">Latte e mandarino</span>
+      <h3>귤을 감싼<br>우유 젤리</h3>
+      <p class="desc">부드럽게 굳힌 우유 속에 귤이 통째로 들어 있습니다. 숟가락이 닿을 때마다 산미가 터지고, 우유는 무겁지 않게 개운한 뒷맛으로 사라집니다. 앞선 네 접시의 기름기를 씻어내며 차갑고 단맛으로 밤을 닫습니다.</p>
+      <p class="ing">우유 · 귤</p>
+      <span class="serve">21:20</span>
+    </div></div>
+  </section>
+
+</main>
+
+<section class="info" id="info">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="label">Information</div>
+      <h2>오시기 전에</h2>
+    </div>
+    <dl class="info-grid">
+      <div class="cell">
+        <dt>Hours</dt>
+        <dd>점심 13:00 · 저녁 19:30<br>
+          <small>하루 한 타임만 엽니다. 예약이 찬 날은 달력에서 닫힙니다.</small></dd>
+      </div>
+      <div class="cell">
+        <dt>Seats</dt>
+        <dd>카운터 2석<br>
+          <small>주방을 마주 보고 앉습니다. 접시는 만들어진 자리에서 바로 건네집니다.</small></dd>
+      </div>
+      <div class="cell">
+        <dt>Course</dt>
+        <dd>단일 코스 · 다섯 접시<br>
+          <small>소요 약 두 시간. 코스는 그날 장바구니에 따라 바뀝니다.</small></dd>
+      </div>
+      <div class="cell">
+        <dt>Wine</dt>
+        <dd>콜키지 없음<br>
+          <small>마시고 싶은 병을 들고 오세요. 잔은 준비해 둡니다.</small></dd>
+      </div>
+      <div class="cell">
+        <dt>Allergy</dt>
+        <dd>갑각류 · 유제품 · 계란 사용<br>
+          <small>예약할 때 알려 주시면 해당 메뉴를 교체해 드립니다.</small></dd>
+      </div>
+      <div class="cell">
+        <dt>Address</dt>
+        <dd>경기도 고양시 덕양구<br>행신로 143번길 40<br>
+          <small>도착하실 때쯤엔 문이 열려 있을 겁니다.</small></dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<section class="reserve" id="reserve">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="label">Reservation</div>
+      <h2>자리를 잡아 두세요</h2>
+    </div>
+
+    <div class="panel">
+      <div id="form-view">
+        <div class="field" id="who-field">
+          <label for="who">성함</label>
+          <input type="text" id="who" placeholder="예약자 이름" autocomplete="name" aria-describedby="who-warn">
+          <p class="warn" id="who-warn" role="alert">예약자 성함을 입력해 주세요.</p>
+        </div>
+
+        <div class="field">
+          <span class="label">날짜</span>
+          <div class="cal-head">
+            <div class="cal-title" id="cal-title">2026년 9월</div>
+            <div class="cal-nav">
+              <button type="button" id="prev" aria-label="이전 달">←</button>
+              <button type="button" id="next" aria-label="다음 달">→</button>
+            </div>
+          </div>
+          <div class="cal-grid" id="cal-grid"></div>
+          <div class="legend">
+            <span><i></i> 예약 가능</span>
+            <span><i class="full"></i> 마감</span>
+          </div>
+        </div>
+
+        <div class="field slot-field" id="slot-field">
+          <span class="label">시간</span>
+          <div class="choices" id="time-group"></div>
+        </div>
+
+        <div class="field">
+          <span class="label">인원</span>
+          <div class="choices" id="party-group">
+            <label><input type="radio" name="party" value="1명"><span>1명</span></label>
+            <label><input type="radio" name="party" value="2명" checked><span>2명</span></label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="note">요청 사항</label>
+          <textarea id="note" placeholder="못 먹는 재료, 기념일, 도착 시간 등"></textarea>
+        </div>
+
+        <button class="btn submit" id="send" disabled>날짜를 선택해 주세요</button>
+        <p class="fineprint">좌석이 둘뿐이라 하루 한 팀만 받습니다.<br>현재 남은 자리는 <strong>9월 5일 토요일 낮</strong> 한 자리입니다.</p>
+      </div>
+
+      <div class="confirm" id="confirm-view">
+        <div class="seal">✓</div>
+        <h4>자리를 잡아 두었습니다</h4>
+        <div class="cline"><span>Guest</span><span id="c-who">—</span></div>
+        <div class="cline"><span>Date</span><span id="c-date">—</span></div>
+        <div class="cline"><span>Time</span><span id="c-time">—</span></div>
+        <div class="cline"><span>Party</span><span id="c-party">—</span></div>
+        <div class="cline"><span>Course</span><span>단일 코스 · 다섯 접시</span></div>
+        <p>그날 새벽에 장을 봅니다.<br>도착하시면 첫 접시는 이미 차갑게 준비되어 있습니다.</p>
+        <button class="again" id="again">예약 내용 수정</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap f-grid">
+    <div class="sig">吳八 <em>오팔</em></div>
+    <div class="f-col">
+      Goyang · Kitchen counter<br>
+      <span class="ko">하루 한 팀 · 저녁 한 타임</span>
+    </div>
+    <div class="f-col">
+      <a href="#reserve">Reservation</a><br>
+      <a href="#menu">Tasting menu</a><br>
+      <a href="#info">Information</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* nav background */
+  var nav = document.getElementById('nav');
+  window.addEventListener('scroll', function(){
+    nav.classList.toggle('solid', window.scrollY > 80);
+  }, {passive:true});
+
+  /* course reveal */
+  var courses = Array.prototype.slice.call(document.querySelectorAll('.course'));
+  if (reduce) {
+    courses.forEach(function(c){ c.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, {threshold:0.25});
+    courses.forEach(function(c){ io.observe(c); });
+  }
+
+  /* choice chips */
+  function wireGroup(id){
+    var g = document.getElementById(id);
+    function paint(){
+      Array.prototype.forEach.call(g.querySelectorAll('label'), function(l){
+        var input = l.querySelector('input');
+        if (input) l.classList.toggle('sel', input.checked);
+      });
+    }
+    g.addEventListener('change', paint);
+    paint();
+    return paint;
+  }
+  wireGroup('party-group');
+
+  /* ---------- calendar ---------- */
+  var OPEN = { '2026-09-05': ['13:00'] };
+  var TIMES = ['12:00', '13:00', '18:30', '19:30', '20:30'];
+  var TODAY = new Date(2026, 7, 16);
+  var DAYS = ['일','월','화','수','목','금','토'];
+  var MIN = {y:2026, m:7}, MAX = {y:2026, m:10};
+  var view = {y:2026, m:8};
+  var picked = {date:null, time:null};
+
+  var grid = document.getElementById('cal-grid');
+  var title = document.getElementById('cal-title');
+  var prevBtn = document.getElementById('prev');
+  var nextBtn = document.getElementById('next');
+  var slotField = document.getElementById('slot-field');
+  var timeGroup = document.getElementById('time-group');
+  var sendBtn = document.getElementById('send');
+
+  function key(y,m,d){
+    return y + '-' + String(m+1).padStart(2,'0') + '-' + String(d).padStart(2,'0');
+  }
+
+  function renderMonth(){
+    title.textContent = view.y + '년 ' + (view.m + 1) + '월';
+    prevBtn.disabled = (view.y === MIN.y && view.m <= MIN.m);
+    nextBtn.disabled = (view.y === MAX.y && view.m >= MAX.m);
+
+    grid.innerHTML = '';
+    DAYS.forEach(function(d){
+      var h = document.createElement('div');
+      h.className = 'dow';
+      h.textContent = d;
+      grid.appendChild(h);
+    });
+
+    var first = new Date(view.y, view.m, 1).getDay();
+    var total = new Date(view.y, view.m + 1, 0).getDate();
+
+    for (var i = 0; i < first; i++){
+      var pad = document.createElement('div');
+      pad.className = 'day empty';
+      grid.appendChild(pad);
+    }
+
+    for (var d = 1; d <= total; d++){
+      var k = key(view.y, view.m, d);
+      var cell = document.createElement('div');
+      cell.className = 'day';
+      cell.textContent = d;
+
+      var isPast = new Date(view.y, view.m, d) < TODAY;
+      if (isPast){
+        cell.classList.add('past');
+      } else if (OPEN[k]){
+        cell.classList.add('open');
+        cell.setAttribute('role','button');
+        cell.setAttribute('tabindex','0');
+        cell.setAttribute('aria-label', (view.m+1) + '월 ' + d + '일 예약 가능');
+        var dot = document.createElement('em');
+        dot.className = 'dot';
+        cell.appendChild(dot);
+        if (picked.date === k) cell.classList.add('sel');
+        (function(kk, node){
+          function choose(){ pick(kk); }
+          node.addEventListener('click', choose);
+          node.addEventListener('keydown', function(e){
+            if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); choose(); }
+          });
+        })(k, cell);
+      } else {
+        cell.classList.add('gone');
+        cell.setAttribute('aria-label', (view.m+1) + '월 ' + d + '일 예약 마감');
+      }
+      grid.appendChild(cell);
+    }
+  }
+
+  function pick(k){
+    picked.date = k;
+    picked.time = null;
+    renderMonth();
+    renderSlots(k);
+    slotField.classList.add('show');
+    updateSend();
+  }
+
+  function renderSlots(k){
+    var open = OPEN[k] || [];
+    timeGroup.innerHTML = '';
+    TIMES.forEach(function(t){
+      var label = document.createElement('label');
+      var available = open.indexOf(t) > -1;
+      if (!available){
+        label.className = 'gone';
+        label.setAttribute('aria-disabled','true');
+        label.innerHTML = '<span>' + t + '</span>';
+      } else {
+        label.innerHTML = '<input type="radio" name="time" value="' + t + '"><span>' + t + '</span>';
+        label.addEventListener('change', function(){
+          picked.time = t;
+          Array.prototype.forEach.call(timeGroup.querySelectorAll('label'), function(l){
+            var inp = l.querySelector('input');
+            l.classList.toggle('sel', !!inp && inp.checked);
+          });
+          updateSend();
+        });
+      }
+      timeGroup.appendChild(label);
+    });
+  }
+
+  function updateSend(){
+    var ready = picked.date && picked.time;
+    sendBtn.disabled = !ready;
+    sendBtn.textContent = ready ? '예약 요청하기'
+      : (picked.date ? '시간을 선택해 주세요' : '날짜를 선택해 주세요');
+  }
+
+  renderMonth();
+
+  /* ---------- reservation ---------- */
+  var formView = document.getElementById('form-view');
+  var confirmView = document.getElementById('confirm-view');
+
+  function prettyDate(v){
+    if(!v) return '—';
+    var p = v.split('-');
+    var d = new Date(+p[0], +p[1]-1, +p[2]);
+    return (+p[1]) + '월 ' + (+p[2]) + '일 ' + DAYS[d.getDay()] + '요일';
+  }
+
+  var whoInput = document.getElementById('who');
+  var whoField = document.getElementById('who-field');
+  var whoWarn = document.getElementById('who-warn');
+
+  whoInput.addEventListener('input', function(){
+    if (whoInput.value.trim()){
+      whoWarn.classList.remove('show');
+      whoField.classList.remove('err');
+    }
+  });
+
+  sendBtn.addEventListener('click', function(){
+    if (sendBtn.disabled) return;
+    var who = whoInput.value.trim();
+    if (!who){
+      whoWarn.classList.add('show');
+      whoField.classList.add('err');
+      whoInput.focus();
+      whoField.scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block:'center'});
+      return;
+    }
+    document.getElementById('c-who').textContent = who + ' 님';
+    document.getElementById('c-date').textContent = prettyDate(picked.date);
+    document.getElementById('c-time').textContent = picked.time;
+    document.getElementById('c-party').textContent = document.querySelector('input[name=party]:checked').value;
+    formView.style.display = 'none';
+    confirmView.classList.add('show');
+    document.getElementById('reserve').scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block:'center'});
+  });
+
+  document.getElementById('again').addEventListener('click', function(){
+    confirmView.classList.remove('show');
+    formView.style.display = 'block';
+  });
+</script>
+</body>
+</html>
